@@ -1,7 +1,9 @@
 
-## Installation
+# express-api
 
-Install my-project with npm
+express api with validation, swagger, sequelize, psql
+
+## Installation
 
 ```bash
   npm install
@@ -9,4 +11,11 @@ Install my-project with npm
 ```bash
   npm run dev
 ```
-    
+
+
+## Start Url
+
+```http
+  GET /api-docs
+```
+
