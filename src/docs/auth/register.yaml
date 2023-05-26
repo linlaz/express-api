@@ -1,0 +1,71 @@
+paths:
+  /api/v1/register:
+    post:
+      tags:
+        - Auth
+      summary: register to system
+      produces:
+        - application/json
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/registerRequest"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/registerSuccess"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        403:
+          $ref: "#/components/responses/ForbiddenError"
+        500:
+          $ref: '#/components/responses/ServerError'
+definitions:
+  registerRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "lin"
+      password:
+        type: string
+        example: "Linlaz"
+      password_confirm:
+        type: string
+        example: "Linlaz"
+  registerSuccess:
+    type: object
+    properties:
+      success:
+        type: boolean
+        example: true
+      code:
+        type: integer
+        example: 200
+      message:
+        type: string
+        example: "register success"
+      data:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              role:
+                type: string
+                example: "user"
+              id:
+                type: string
+                example: "100"
+              name:
+                type: string
+                example: "lin"
+          token:
+            type: string
+            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY29kZXBhbjNkYTEyMTIiLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODk1ODY2N30.mdwTfgpjseV92FEldJrArkaynWgIdGwPT1dLd7E6De4"

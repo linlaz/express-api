@@ -1,0 +1,56 @@
+paths:
+  /api/v1/user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: Find All User ( only admin )
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: role
+          in: query
+          schema:
+            type: string
+            enum: [super-admin, admin, user]
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/UserGetSucces'
+        403:
+          $ref: '#/components/responses/ForbiddenError'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+definitions:
+  UserGetSucces:
+    type: object
+    properties:
+      success:
+        type: boolean
+        example: true
+      code:
+        type: integer
+        example: 200
+      data:
+        type: array
+        items:
+          datas:
+          type: object
+          properties:
+            id:
+              type: string
+              example: '1'
+            name:
+              type: string
+              example: 'lin'
+            role:
+              type: string
+              example: 'admin'

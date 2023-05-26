@@ -1,0 +1,54 @@
+paths:
+  /api/v1/user/role/{id}:
+    produces:
+      - application/json
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: Update role User by admin ( only admin )
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/updateRoleRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/userUpdateRoleSuccess'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'
+        404:
+          $ref: '#/components/responses/DataNotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+definitions:
+  updateRoleRequest:
+    type: object
+    properties:
+      role:
+        type: string
+
+  userUpdateRoleSuccess:
+    type: object
+    properties:
+      success:
+        type: boolean
+        example: true
+      message:
+        type: string
+        example: 'updated successfully'

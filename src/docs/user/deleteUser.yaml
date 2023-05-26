@@ -1,0 +1,26 @@
+paths:
+  /api/v1/user/{id}:
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: Delete user by id ( only admin )
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/SimpleSuccess'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'
+        404:
+          $ref: '#/components/responses/DataNotFound'
+        500:
+          $ref: '#/components/responses/ServerError'

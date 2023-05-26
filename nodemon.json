@@ -1,0 +1,16 @@
+{
+  "watch": [
+    "package.json",
+    "nodemon.json",
+    ".eslintrc.json",
+    "babel.config.json",
+    "src/",
+    "migrations/",
+    ".env",
+    ".sequelizerc",
+    "swagger.json",
+    "src/docs/*"
+  ],
+  "verbose": false,
+  "ignore": ["*.test.js", "*.spec.js"]
+}

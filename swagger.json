@@ -1,0 +1,185 @@
+{
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "boilerplate",
+      "version": "1.0.0",
+      "description": "Backend Services of boilerplate",
+      "contact": {
+        "name": "Lintang ",
+        "email": "lintanglazuardi11@gmail.com"
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "Bearer": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header",
+          "description": "Enter the token with the `Bearer: ` prefix, e.g. \"Bearer abcde12345\""
+        }
+      },
+      "responses": {
+        "SimpleSuccess": {
+          "description": "Succes general action",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": "true"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "action from method success"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ServerError": {
+          "description": "Internal Server Error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": "true"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "DataNotFound": {
+          "description": "Data Not Found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": "true"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 404
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Data Not Found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "BadRequest": {
+          "description": "Error: Bad Request",
+          "content": {
+            "application/json": {
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "success":{
+                    "type": "boolean",
+                    "example": "false"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 400
+                  },
+                  "errors":{
+                    "type": "array",
+                    "items":{
+                      "type": "object",
+                      "properties": {
+                        "source" : {
+                          "type": "string",
+                          "example": "email"
+                        },
+                        "message":{
+                          "type":"string",
+                          "example": "Must Exist"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ForbiddenError":{
+          "description": "Error: Forbidden",
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "success": {
+                    "type": "boolean",
+                    "example": "false"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 403
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Forbidden"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "UnauthorizedError": {
+          "description": "Error: Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": "false"
+                  },
+                  "code":{
+                    "type": "integer",
+                    "example": 401
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "apis": [
+    "./docs/**/*.yaml"
+  ]
+}

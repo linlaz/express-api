@@ -1,0 +1,97 @@
+paths:
+  /api/v1/user/profile/:
+    produces:
+      - application/json
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: User profile by login
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/userGetCurrentSuccess'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User
+      summary: update user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/updateUserRequest' 
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/updateUserSuccess'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/DataNotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+definitions:
+  updateUserRequest:
+    type: object
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      password_confirm:
+        type: string
+
+  updateUserSuccess:
+    type: object
+    properties:
+      success:
+        type: boolean
+        example: true
+      code:
+        type: integer
+        example: 200
+      message:
+        type: string
+        example: 'update profile successfully, you must loggin again'
+
+  userGetCurrentSuccess:
+    type: object
+    properties:
+      success:
+        type: boolean
+        example: true
+      code:
+        type: integer
+        example: 200
+      message:
+        type: string
+        example: 'user by login'
+      data:
+        type: object
+        properties:
+          id:
+            type: string
+            example: '1'
+          name:
+            type: string
+            example: 'lin'
+          role:
+            type: string
+            example: 'user'

@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  app:
+    container_name: "boilerplate"
+    image: "boilerplate"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=boilerplate
+      - DB_DIALECT=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=password
+      -
+      - JWT_SECRET=jwt_secret
+      - JWT_IDENTIFIER=jwt_indentifier
+      - JWT_EXPIRE=43200000
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    networks:
+      - default
+  db:
+    container_name: "boilerplate"
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=boilerplate
+    networks:
+      - default
+networks:
+  default:
