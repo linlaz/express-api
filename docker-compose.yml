@@ -11,7 +11,6 @@ services:
       - DB_DIALECT=postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=password
-      -
       - JWT_SECRET=jwt_secret
       - JWT_IDENTIFIER=jwt_indentifier
       - JWT_EXPIRE=43200000
